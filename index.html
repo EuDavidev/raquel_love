@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: #000000;
+    }
+    #canvas {
+      flex: 1;
+      width: 100%;
+      max-height: calc(100vh - 120px);
+    }
+    .message {
+      position: absolute;
+      top: 20px;
+      font-family: 'Crimson Text', serif;
+      font-size: 48px;
+      color: #ff9999;
+      text-shadow: 0 0 10px rgba(255, 153, 153, 0.8), 0 0 20px rgba(255, 153, 153, 0.5);
+      z-index: 10;
+      display: none;
+      transform: translateY(100px) scale(0.5);
+      opacity: 0;
+      animation: popOut 1s ease-out forwards;
+    }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    svg {
+      overflow: visible;
+      width: 500px;
+      height: 100px;
+    }
+    svg path#line {
+      fill: none;
+      stroke: #e00000;
+      stroke-width: 2;
+      stroke-linecap: butt;
+      stroke-linejoin: round;
+      stroke-miterlimit: 4;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: dash 4s linear infinite;
+    }
+    svg path#heart {
+      transform-origin: 50% 50%;
+      animation: blink 4s linear infinite;
+    }
+    @keyframes dash {
+      0% {
+        stroke-dashoffset: 1;
+      }
+      80% {
+        stroke-dashoffset: 0;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+    @keyframes blink {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      60% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      75% {
+        opacity: 1;
+        transform: scale(1.0);
+      }
+      80% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      85% {
+        opacity: 1;
+        transform: scale(1.0);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.0);
+      }
+    }
+    @keyframes popOut {
+      0% {
+        transform: translateY(100px) scale(0.5);
+        opacity: 0;
+      }
+      60% {
+        transform: translateY(-20px) scale(1.2);
+        opacity: 1;
+      }
+      80% {
+        transform: translateY(10px) scale(0.9);
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="message" id="message">Eu te amo</div>
+  <div id="canvas"></div>
+  <footer>
+    <svg xmlns="http://www.w3.org/2000/svg" id="svg5" version="1.1" viewBox="0 0 502.98 108.61">
+      <path id="heart" d="M213.35 29.43c19.41-15.19 33.68 10.86 37.73 18.82-.28-13.61 11.64-40.98 25.94-34.01 32.3 15.74-15.88 83.8-26.4 81.76-13.24-9-51.35-53.3-37.27-66.57Z" style="fill:#ff9999;stroke:#ff9999;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+      <path pathLength="1" id="line" d="M5.32 78.13c.96-.01 5-8.5 5.54-8.54.58-.05 6.1 8.51 7.1 8.51 3.66 0 9.29.06 10.71.05 2.53-.01 4.82-72.88 4.82-72.88l4.76 97.28 3.97-24.45 20.45-.22C64 77.86 77.1 63.66 78.36 63.8c1.31.15 6.68 14.08 7.94 14.07 2.3-.03 33.32.04 35.76.02.96 0 5-8.5 5.53-8.53.59-.05 6.1 8.51 7.1 8.5 3.66 0 9.3.07 10.72.06 2.53-.02 4.81-72.89 4.81-72.89l4.77 97.28 3.97-24.44s83.34-3.33 74.69 7.67c-8.65 11-45.3-42.94-31.65-53.58 25.6-19.96 49.96 36.94 40.26 36.5-12.2-.53 1.8-62.32 23.41-51.7 32.24 15.86-17.56 84.92-26.4 81.77-5.73-2.05-.68-21.68 31.4-26.58 26.65-6.42 29.5 2.35 52.62 7.11 2.53-.02 4.82-72.89 4.82-72.89l4.76 97.28 3.97-24.44 20.45-.22c1.31-.02 14.41-14.22 15.68-14.07 1.32.15 6.7 14.08 7.95 14.07 2.29-.03 33.32.04 35.76.02.95 0 5-8.5 5.53-8.54.58-.04 6.1 8.52 7.1 8.52 3.66 0 9.3.06 10.72.05 2.53-.02 4.81-72.89 4.81-72.89l4.77 97.28 3.97-24.44 20.45-.23c1.31-.01 14.4-14.22 15.68-14.07 1.32.16 6.69 14.09 7.94 14.07"/>
+    </svg>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / (window.innerHeight - 120), 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight - 120);
+    const canvas = document.getElementById('canvas');
+    canvas.appendChild(renderer.domElement);
+
+    // Create a cartoon-style heart geometry
+    const heartShape = new THREE.Shape();
+    heartShape.moveTo(0, 0.4);
+    heartShape.bezierCurveTo(0, 0.6, 0.2, 0.8, 0.5, 0.8);
+    heartShape.bezierCurveTo(0.8, 0.8, 1, 0.6, 1, 0.4);
+    heartShape.bezierCurveTo(1, 0.2, 0.9, 0, 0.5, -0.4);
+    heartShape.bezierCurveTo(0.1, -0.8, -0.1, -0.8, -0.5, -0.4);
+    heartShape.bezierCurveTo(-0.9, 0, -1, 0.2, -1, 0.4);
+    heartShape.bezierCurveTo(-1, 0.6, -0.8, 0.8, -0.5, 0.8);
+    heartShape.bezierCurveTo(-0.2, 0.8, 0, 0.6, 0, 0.4);
+
+    const extrudeSettings = { depth: 0.5, bevelEnabled: true, bevelSegments: 3, steps: 2, bevelSize: 0.1, bevelThickness: 0.1 };
+    const geometry = new THREE.ExtrudeGeometry(heartShape, extrudeSettings);
+
+    // Use a toon material with specified red color
+    const material = new THREE.MeshToonMaterial({ color: 0xff6161 });
+    const heart = new THREE.Mesh(geometry, material);
+    heart.scale.set(1.5, 1.5, 1.5);
+    scene.add(heart);
+
+    // Lighting for cartoon effect
+    const light = new THREE.DirectionalLight(0xffffff, 0.8);
+    light.position.set(5, 5, 5);
+    scene.add(light);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    scene.add(ambientLight);
+
+    // Fireworks particle system
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 100;
+    const posArray = new Float32Array(particlesCount * 3);
+    const colorsArray = new Float32Array(particlesCount * 3);
+    const velocities = [];
+
+    for (let i = 0; i < particlesCount; i++) {
+      posArray[i * 3] = (Math.random() - 0.5) * 4;
+      posArray[i * 3 + 1] = (Math.random() - 0.5) * 4;
+      posArray[i * 3 + 2] = (Math.random() - 0.5) * 4;
+      colorsArray[i * 3] = Math.random();
+      colorsArray[i * 3 + 1] = Math.random();
+      colorsArray[i * 3 + 2] = Math.random();
+      velocities.push({
+        x: (Math.random() - 0.5) * 0.05,
+        y: (Math.random() - 0.5) * 0.05,
+        z: (Math.random() - 0.5) * 0.05,
+        life: Math.random() * 2 + 1
+      });
+    }
+
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.1,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0
+    });
+
+    const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particles);
+
+    camera.position.z = 4;
+
+    // Mouse interaction for rotation
+    let isDragging = false;
+    let previousMouseX = 0;
+
+    canvas.addEventListener('mousedown', (event) => {
+      isDragging = true;
+      previousMouseX = event.clientX;
+    });
+
+    canvas.addEventListener('mousemove', (event) => {
+      if (isDragging) {
+        const deltaX = event.clientX - previousMouseX;
+        heart.rotation.y += deltaX * 0.01;
+        previousMouseX = event.clientX;
+      }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      isDragging = false;
+    });
+
+    // Click to show message and fireworks
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    canvas.addEventListener('click', (event) => {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -((event.clientY - 120) / (window.innerHeight - 120)) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObject(heart);
+
+      if (intersects.length > 0) {
+        const message = document.getElementById('message');
+        message.style.display = 'block';
+        particlesMaterial.opacity = 1;
+        // Reset animation
+        message.style.animation = 'none';
+        message.offsetHeight; // Trigger reflow
+        message.style.animation = 'popOut 1s ease-out forwards';
+      }
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Heart pulse animation
+      heart.scale.set(1.5 + Math.sin(Date.now() * 0.003) * 0.15, 
+                      1.5 + Math.sin(Date.now() * 0.003) * 0.15, 
+                      1.5 + Math.sin(Date.now() * 0.003) * 0.15);
+
+      // Fireworks animation
+      if (particlesMaterial.opacity > 0) {
+        for (let i = 0; i < particlesCount; i++) {
+          posArray[i * 3] += velocities[i].x;
+          posArray[i * 3 + 1] += velocities[i].y;
+          posArray[i * 3 + 2] += velocities[i].z;
+          velocities[i].life -= 0.02;
+
+          if (velocities[i].life <= 0) {
+            posArray[i * 3] = (Math.random() - 0.5) * 4;
+            posArray[i * 3 + 1] = (Math.random() - 0.5) * 4;
+            posArray[i * 3 + 2] = (Math.random() - 0.5) * 4;
+            velocities[i].x = (Math.random() - 0.5) * 0.05;
+            velocities[i].y = (Math.random() - 0.5) * 0.05;
+            velocities[i].z = (Math.random() - 0.5) * 0.05;
+            velocities[i].life = Math.random() * 2 + 1;
+          }
+        }
+        particlesGeometry.attributes.position.needsUpdate = true;
+        particlesMaterial.opacity -= 0.005;
+        if (particlesMaterial.opacity <= 0) {
+          document.getElementById('message').style.display = 'none';
+        }
+      }
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight - 120);
+      camera.aspect = window.innerWidth / (window.innerHeight - 120);
+      camera.updateProjectionMatrix();
+    });
+  </script>
+</body>
+</html>
